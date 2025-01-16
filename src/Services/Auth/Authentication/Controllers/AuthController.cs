@@ -1,0 +1,26 @@
+﻿using Authentication.Models;
+using Authentication.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Authentication.Controllers
+{
+    [Route("api/auth")]
+    [ApiController]
+    public class AuthController : ControllerBase
+    {
+        private readonly IJwtTokenService _jwtTokenService;
+
+        public AuthController(IJwtTokenService jwtTokenService)
+        {
+            _jwtTokenService = jwtTokenService;
+        }
+
+        [HttpPost]
+        public IActionResult Login([FromBody] LoginModel model)
+        {
+            var loginResult = _jwtTokenService.GenerateAuthToken(model);
+
+            return string.IsNullOrEmpty(loginResult.Token) ? Unauthorized() : Ok(loginResult);
+        }
+    }
+}
