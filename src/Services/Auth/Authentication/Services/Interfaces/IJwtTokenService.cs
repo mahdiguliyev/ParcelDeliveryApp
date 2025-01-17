@@ -4,6 +4,6 @@ namespace Authentication.Services.Interfaces
 {
     public interface IJwtTokenService
     {
-        AuthToken GenerateAuthToken(LoginModel model);
+        Task<AuthToken> GenerateAuthToken(LoginModel model);
     }
 }

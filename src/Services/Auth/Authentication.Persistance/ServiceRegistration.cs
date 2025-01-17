@@ -11,6 +11,7 @@ public static class ServiceRegistration
     public static void AddPersistenceServices(this IServiceCollection services)
         {
             services.AddDbContext<AuthDbContext>(options => options.UseNpgsql(Configuration.ConnectionString));
+            
             services.AddIdentity<User, Role>(options => {
                 // User Password Options
                 options.Password.RequireDigit = false;

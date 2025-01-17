@@ -5,21 +5,29 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Identity;
 
 namespace Authentication.Services.Concretes
 {
     public class JwtTokenService : IJwtTokenService
     {
-        private readonly List<User> _users = new()
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
+        
+        public JwtTokenService(UserManager<User> userManager, SignInManager<User> signInManager)
         {
-            new() {Username = "admin", Password = "admin123", Role = "ADMIN", Scopes = new[] {"create.curier"}},
-            new() {Username = "user", Password = "user123", Role = "USER", Scopes = new[] {"list.parcels"}},
-            new() {Username = "curier", Password = "curier123", Role = "CURIER", Scopes = new[] {"list.parcels"}},
-        };
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
 
-        public AuthToken GenerateAuthToken(LoginModel model)
+        public async Task<AuthToken> GenerateAuthToken(LoginModel model)
         {
-            var user = _users.FirstOrDefault(u => u.Username == model.Username && u.Password == model.Password);
+            var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, lockoutOnFailure: false);
+
+            if (!result.Succeeded)
+                return new AuthToken(string.Empty, 0);
+            
+            var user = await _userManager.FindByNameAsync(model.Username);
 
             if (user == null)
                 return new AuthToken(string.Empty, 0);

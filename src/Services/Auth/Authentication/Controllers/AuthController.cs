@@ -16,9 +16,9 @@ namespace Authentication.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login([FromBody] LoginModel model)
+        public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            var loginResult = _jwtTokenService.GenerateAuthToken(model);
+            var loginResult = await _jwtTokenService.GenerateAuthToken(model);
 
             return string.IsNullOrEmpty(loginResult.Token) ? Unauthorized() : Ok(loginResult);
         }
