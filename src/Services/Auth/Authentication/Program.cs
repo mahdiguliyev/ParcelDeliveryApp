@@ -1,4 +1,8 @@
+using Authentication.Persistance;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddPersistenceServices();
 
 // Add services to the container.
 
@@ -9,6 +13,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -16,8 +21,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
+//app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

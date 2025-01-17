@@ -43,7 +43,7 @@ public class UserMap : IEntityTypeConfiguration<User>
                 NormalizedUserName = "ADMIN",
                 Email = "admin@gmail.com",
                 NormalizedEmail = "ADMIN@GMAIL.COM",
-                PhoneNumber = "+905555555555",
+                PhoneNumber = "+9945555555555",
                 FirstName = "admin",
                 LastName = "admin",
                 About = "Admin User of App",
@@ -51,15 +51,15 @@ public class UserMap : IEntityTypeConfiguration<User>
                 PhoneNumberConfirmed = true,
                 SecurityStamp = Guid.NewGuid().ToString(),
             };
-            adminUser.PasswordHash = CreatePasswordHash(adminUser, "Mehdi135");
-            var editorUser = new User
+            adminUser.PasswordHash = CreatePasswordHash(adminUser, "Admin135");
+            var normalUser = new User
             {
                 Id = Guid.NewGuid(),
                 UserName = "User",
                 NormalizedUserName = "USER",
                 Email = "user@gmail.com",
                 NormalizedEmail = "USER@GMAIL.COM",
-                PhoneNumber = "+905555555555",
+                PhoneNumber = "+9945555555555",
                 FirstName = "User",
                 LastName = "User",
                 About = "Editor User of App",
@@ -67,9 +67,25 @@ public class UserMap : IEntityTypeConfiguration<User>
                 PhoneNumberConfirmed = true,
                 SecurityStamp = Guid.NewGuid().ToString()
             };
-            editorUser.PasswordHash = CreatePasswordHash(editorUser, "Sadiq135");
+            normalUser.PasswordHash = CreatePasswordHash(normalUser, "User135");
+            var curierUser = new User
+            {
+                Id = Guid.NewGuid(),
+                UserName = "Curier",
+                NormalizedUserName = "CURIER",
+                Email = "curier@gmail.com",
+                NormalizedEmail = "CURIER@GMAIL.COM",
+                PhoneNumber = "+9945555555555",
+                FirstName = "Curier",
+                LastName = "Curier",
+                About = "Editor Curier of App",
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true,
+                SecurityStamp = Guid.NewGuid().ToString()
+            };
+            curierUser.PasswordHash = CreatePasswordHash(curierUser, "User135");
 
-            builder.HasData(adminUser, editorUser);
+            builder.HasData(adminUser, normalUser, curierUser);
     }
     private string CreatePasswordHash(User user, string password)
     {

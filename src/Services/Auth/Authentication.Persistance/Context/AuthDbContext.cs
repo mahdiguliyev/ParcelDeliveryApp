@@ -2,6 +2,7 @@ using Authentication.Domain.Entities;
 using Authentication.Persistance.Mappings;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Authentication.Persistance.Context;
 
