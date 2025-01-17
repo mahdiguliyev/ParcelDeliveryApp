@@ -21,6 +21,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{0E76D440-8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication", "Services\Auth\Authentication\Authentication.csproj", "{6910520E-B8A7-44C7-9850-41E4E6929569}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication.Domain", "Services\Auth\Authentication.Domain\Authentication.Domain.csproj", "{CCF00EB9-FE9A-4302-82D6-B183DE6B297C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication.Persistance", "Services\Auth\Authentication.Persistance\Authentication.Persistance.csproj", "{151F1BA1-5D29-4345-B28E-89FC5840650E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{6910520E-B8A7-44C7-9850-41E4E6929569}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6910520E-B8A7-44C7-9850-41E4E6929569}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6910520E-B8A7-44C7-9850-41E4E6929569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCF00EB9-FE9A-4302-82D6-B183DE6B297C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCF00EB9-FE9A-4302-82D6-B183DE6B297C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCF00EB9-FE9A-4302-82D6-B183DE6B297C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCF00EB9-FE9A-4302-82D6-B183DE6B297C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{151F1BA1-5D29-4345-B28E-89FC5840650E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{151F1BA1-5D29-4345-B28E-89FC5840650E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{151F1BA1-5D29-4345-B28E-89FC5840650E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{151F1BA1-5D29-4345-B28E-89FC5840650E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +62,7 @@ Global
 		{64D7826D-8636-4F9A-B17A-AC6A794DCA40} = {13D5CF58-5195-435E-82BF-437AB0FD34F0}
 		{0E76D440-83B1-4D7A-BFE8-A2AFAD3420CD} = {1B82379D-7A9B-464F-A92E-7D5A431FD9BE}
 		{6910520E-B8A7-44C7-9850-41E4E6929569} = {0E76D440-83B1-4D7A-BFE8-A2AFAD3420CD}
+		{CCF00EB9-FE9A-4302-82D6-B183DE6B297C} = {0E76D440-83B1-4D7A-BFE8-A2AFAD3420CD}
+		{151F1BA1-5D29-4345-B28E-89FC5840650E} = {0E76D440-83B1-4D7A-BFE8-A2AFAD3420CD}
 	EndGlobalSection
 EndGlobal
