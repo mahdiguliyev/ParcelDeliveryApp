@@ -1,11 +1,12 @@
 ﻿using Authentication.Extensions;
-using Authentication.Models;
 using Authentication.Services.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
+using Authentication.Models;
+using Authentication.Domain.Entities;
 
 namespace Authentication.Services.Concretes
 {
@@ -32,15 +33,19 @@ namespace Authentication.Services.Concretes
             if (user == null)
                 return new AuthToken(string.Empty, 0);
 
+            var roles = await _userManager.GetRolesAsync(user);
+
+            var loginInfo = new UserLoginInfo("ParcelLoginProvider", "parcel", user.Id.ToString());
+            await _userManager.AddLoginAsync(user, loginInfo);
+
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtExtensions.SecurityKey));
             var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
             var expirationTimeStamp = DateTime.Now.AddMinutes(10);
 
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Name, user.Username),
-                new Claim("Role", user.Role),
-                new Claim("Scope", string.Join("-", user.Scopes)),
+                new Claim(JwtRegisteredClaimNames.Name, user.UserName),
+                new Claim("Role", string.Join(",", roles)),
             };
 
             var tokenOptions = new JwtSecurityToken(

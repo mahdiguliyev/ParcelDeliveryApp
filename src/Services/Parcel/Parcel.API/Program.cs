@@ -1,4 +1,8 @@
+using Authentication.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddJwtAuthentication();
 
 // Add services to the container.
 
@@ -17,7 +21,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
