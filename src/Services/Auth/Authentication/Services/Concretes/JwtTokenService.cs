@@ -9,6 +9,8 @@ using Authentication.Models;
 using Authentication.Domain.Entities;
 using Authentication.Domain.Dtos;
 using System.Data;
+using CSharpFunctionalExtensions;
+using PD.Shared.Models;
 
 namespace Authentication.Services.Concretes
 {
@@ -25,17 +27,17 @@ namespace Authentication.Services.Concretes
             _roleManager = roleManager;
         }
 
-        public async Task<AuthToken> GenerateAuthTokenAsync(LoginModel model)
+        public async Task<IResult<AuthToken, DomainError>> GenerateAuthTokenAsync(LoginModel model)
         {
             var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, lockoutOnFailure: false);
 
             if (!result.Succeeded)
-                return new AuthToken(string.Empty, 0);
+                return Result.Failure<AuthToken, DomainError>(DomainError.BusinessError("Inserted credentials is not correct."));
 
             var user = await _userManager.FindByNameAsync(model.Username);
 
             if (user == null)
-                return new AuthToken(string.Empty, 0);
+                return Result.Failure<AuthToken, DomainError>(DomainError.BusinessError("User not found."));
 
             var roles = await _userManager.GetRolesAsync(user);
 
@@ -58,10 +60,10 @@ namespace Authentication.Services.Concretes
 
             var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
 
-            return new AuthToken(tokenString, (int)expirationTimeStamp.Subtract(DateTime.Now).TotalSeconds);
+            return Result.Success<AuthToken, DomainError>(new AuthToken(tokenString, (int)expirationTimeStamp.Subtract(DateTime.Now).TotalSeconds));
         }
 
-        public async Task<AuthToken> RegisterUserAndGenerateAuthTokenAsync(RegisterUserDto model)
+        public async Task<IResult<AuthToken, DomainError>> RegisterUserAndGenerateAuthTokenAsync(RegisterUserDto model)
         {
             var user = new User
             {
@@ -76,7 +78,7 @@ namespace Authentication.Services.Concretes
             var roleExists = await _roleManager.RoleExistsAsync("User");
             if (!roleExists)
             {
-                return new AuthToken(string.Empty, 0);
+                return Result.Failure<AuthToken, DomainError>(DomainError.BusinessError("Role not found."));
             }
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -104,18 +106,19 @@ namespace Authentication.Services.Concretes
 
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
 
-                return new AuthToken(tokenString, (int)expirationTimeStamp.Subtract(DateTime.Now).TotalSeconds);
+                return Result.Success<AuthToken, DomainError>(new AuthToken(tokenString, (int)expirationTimeStamp.Subtract(DateTime.Now).TotalSeconds));
             }
 
+            string errorDetail = string.Empty;
             foreach (var error in result.Errors)
             {
-                //ModelState.AddModelError(string.Empty, error.Description);
+                errorDetail += "-" + error.Description + ";";
             }
 
-            return new AuthToken(string.Empty, 0);
+            return Result.Failure<AuthToken, DomainError>(DomainError.BusinessError(errorDetail));
         }
 
-        public async Task<bool> RegisterCurierAndGenerateAuthTokenAsync(RegisterCurierDto model)
+        public async Task<IResult<string, DomainError>> RegisterCurierAndGenerateAuthTokenAsync(RegisterCurierDto model)
         {
             var user = new User
             {
@@ -130,7 +133,7 @@ namespace Authentication.Services.Concretes
             var roleExists = await _roleManager.RoleExistsAsync("Curier");
             if (!roleExists)
             {
-                return false;
+                return Result.Failure<string, DomainError>(DomainError.BusinessError("Role not found."));
             }
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -140,15 +143,16 @@ namespace Authentication.Services.Concretes
                 
                 await _userManager.AddToRoleAsync(user, "Curier");
 
-                return true;
+                return Result.Success<string, DomainError>("Curier is created successfully.");
             }
 
+            string errorDetail = string.Empty;
             foreach (var error in result.Errors)
             {
-                //ModelState.AddModelError(string.Empty, error.Description);
+                errorDetail += "-" + error.Description + ";";
             }
 
-            return false;
+            return Result.Failure<string, DomainError>(DomainError.BusinessError(errorDetail));
         }
     }
 }

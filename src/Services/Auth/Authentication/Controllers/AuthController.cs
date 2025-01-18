@@ -1,8 +1,10 @@
 ﻿using Authentication.Domain.Dtos;
 using Authentication.Models;
 using Authentication.Services.Interfaces;
+using CSharpFunctionalExtensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PD.Shared.Models;
 
 namespace Authentication.Controllers
 {
@@ -24,7 +26,9 @@ namespace Authentication.Controllers
         {
             var loginResult = await _jwtTokenService.GenerateAuthTokenAsync(model);
 
-            return string.IsNullOrEmpty(loginResult.Token) ? Unauthorized() : Ok(loginResult);
+            return loginResult.IsSuccess ?
+                Ok(ApiResponse<AuthToken>.Success(loginResult.Value)) :
+                BadRequest(ApiResponse<string>.Failure(loginResult.Error.ErrorMessage));
         }
 
         [HttpPost("registeruser")]
@@ -38,7 +42,10 @@ namespace Authentication.Controllers
 
             var registerResult = await _jwtTokenService.RegisterUserAndGenerateAuthTokenAsync(model);
 
-            return string.IsNullOrEmpty(registerResult.Token) ? Unauthorized() : Ok(registerResult);
+
+            return registerResult.IsSuccess ?
+                Ok(ApiResponse<AuthToken>.Success(registerResult.Value)) :
+                BadRequest(ApiResponse<string>.Failure(registerResult.Error.ErrorMessage));
         }
 
         [HttpPost("registercurier")]
@@ -52,7 +59,9 @@ namespace Authentication.Controllers
 
             var registerResult = await _jwtTokenService.RegisterCurierAndGenerateAuthTokenAsync(model);
 
-            return registerResult ? Ok(registerResult) : BadRequest();
+            return registerResult.IsSuccess ?
+                Ok(ApiResponse<string>.Success(registerResult.Value)) :
+                BadRequest(ApiResponse<string>.Failure(registerResult.Error.ErrorMessage));
         }
     }
 }

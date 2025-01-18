@@ -1,12 +1,14 @@
 ﻿using Authentication.Domain.Dtos;
 using Authentication.Models;
+using CSharpFunctionalExtensions;
+using PD.Shared.Models;
 
 namespace Authentication.Services.Interfaces
 {
     public interface IJwtTokenService
     {
-        Task<AuthToken> GenerateAuthTokenAsync(LoginModel model);
-        Task<AuthToken> RegisterUserAndGenerateAuthTokenAsync(RegisterUserDto model);
-        Task<bool> RegisterCurierAndGenerateAuthTokenAsync(RegisterCurierDto model);
+        Task<IResult<AuthToken, DomainError>> GenerateAuthTokenAsync(LoginModel model);
+        Task<IResult<AuthToken, DomainError>> RegisterUserAndGenerateAuthTokenAsync(RegisterUserDto model);
+        Task<IResult<string, DomainError>> RegisterCurierAndGenerateAuthTokenAsync(RegisterCurierDto model);
     }
 }
