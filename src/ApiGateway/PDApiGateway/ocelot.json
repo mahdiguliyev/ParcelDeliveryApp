@@ -3,10 +3,13 @@
     "BaseUrl": "http://localhost:4444"
   },
   "Routes": [
+
+    // Authentication APIs
+
     {
-      "UpstreamPathTemplate": "/gw/auth",
+      "UpstreamPathTemplate": "/gw/auth/login",
       "UpstreamHttpMethod": [ "POST" ],
-      "DownstreamPathTemplate": "/api/auth",
+      "DownstreamPathTemplate": "/api/auth/login",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -16,6 +19,41 @@
       ],
       "SwaggerKey": "Auth"
     },
+    {
+      "UpstreamPathTemplate": "/gw/auth/registeruser",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/api/auth/registeruser",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 3333
+        }
+      ],
+      "SwaggerKey": "Auth"
+    },
+    {
+      "UpstreamPathTemplate": "/gw/auth/registercurier",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/api/auth/registercurier",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 3333
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      },
+      "SwaggerKey": "Auth"
+    },
+
+    // Parcel APIs
+
     {
       "UpstreamPathTemplate": "/gw/parcel/{id}",
       "UpstreamHttpMethod": [ "GET" ],
@@ -38,6 +76,9 @@
       },
       "SwaggerKey": "Parcel"
     },
+
+    // StaffManagement APIs
+
     {
       "UpstreamPathTemplate": "/gw/staff/{id}",
       "UpstreamHttpMethod": [ "GET" ],

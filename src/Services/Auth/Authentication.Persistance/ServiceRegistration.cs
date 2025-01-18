@@ -22,7 +22,7 @@ public static class ServiceRegistration
             // User Username and Email Options
             options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
             options.User.RequireUniqueEmail = true;
-        }).AddEntityFrameworkStores<AuthDbContext>();
+        }).AddEntityFrameworkStores<AuthDbContext>().AddDefaultTokenProviders();
         services.Configure<SecurityStampValidatorOptions>(options =>
         {
             options.ValidationInterval = TimeSpan.FromSeconds(5); // after assigning new changes (ex: roles), the user is logged out after 15 minutes
