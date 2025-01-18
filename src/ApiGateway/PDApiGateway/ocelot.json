@@ -4,19 +4,93 @@
   },
   "Routes": [
     {
-      "UpstreamPathTemplate": "/gw/data",
+      "UpstreamPathTemplate": "/gw/auth",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/api/auth",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 3333
+        }
+      ],
+      "SwaggerKey": "Auth"
+    },
+    {
+      "UpstreamPathTemplate": "/gw/parcel/{id}",
       "UpstreamHttpMethod": [ "GET" ],
-      "DownstreamPathTemplate": "/api/data",
+      "DownstreamPathTemplate": "/api/parcel/{id}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 6001
+          "Port": 1111
         }
       ],
       "FileCacheOptions": {
         "TtlSeconds": 30
-      }
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      },
+      "SwaggerKey": "Parcel"
+    },
+    {
+      "UpstreamPathTemplate": "/gw/staff/{id}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/staff/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 2222
+        }
+      ],
+      "FileCacheOptions": {
+        "TtlSeconds": 30
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      },
+      "SwaggerKey": "StaffManagement"
+    }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "Auth",
+      "Config": [
+        {
+          "Name": "API Auth",
+          "Version": "v1",
+          "Url": "http://localhost:3333/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "Parcel",
+      "Config": [
+        {
+          "Name": "API Parcel",
+          "Version": "v1",
+          "Url": "https://localhost:1111/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "StaffManagement",
+      "Config": [
+        {
+          "Name": "API StaffManagement",
+          "Version": "v1",
+          "Url": "https://localhost:2222/swagger/v1/swagger.json"
+        }
+      ]
     }
   ]
 }

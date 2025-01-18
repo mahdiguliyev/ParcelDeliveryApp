@@ -35,9 +35,6 @@ namespace Authentication.Services.Concretes
 
             var roles = await _userManager.GetRolesAsync(user);
 
-            var loginInfo = new UserLoginInfo("ParcelLoginProvider", "parcel", user.Id.ToString());
-            await _userManager.AddLoginAsync(user, loginInfo);
-
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtExtensions.SecurityKey));
             var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
             var expirationTimeStamp = DateTime.Now.AddMinutes(10);

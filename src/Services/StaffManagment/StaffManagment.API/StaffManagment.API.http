@@ -1,6 +1,0 @@
-@StaffManagment.API_HostAddress = http://localhost:5145
-
-GET {{StaffManagment.API_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

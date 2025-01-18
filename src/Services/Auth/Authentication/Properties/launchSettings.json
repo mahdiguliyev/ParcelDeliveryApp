@@ -3,8 +3,7 @@
     "Authentication.API": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchBrowser": false,
       "applicationUrl": "http://localhost:3333",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
