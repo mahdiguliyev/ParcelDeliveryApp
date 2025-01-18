@@ -32,6 +32,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JwtConfiguration", "Services\Auth\JwtConfiguration\JwtConfiguration.csproj", "{CF9F09E8-9077-4B1C-BA88-CE58F9B857A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDApiGateway", "ApiGateway\PDApiGateway\PDApiGateway.csproj", "{DB4B10D3-93A7-45AE-8104-C9057D3DB790}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{CF9F09E8-9077-4B1C-BA88-CE58F9B857A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF9F09E8-9077-4B1C-BA88-CE58F9B857A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF9F09E8-9077-4B1C-BA88-CE58F9B857A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB4B10D3-93A7-45AE-8104-C9057D3DB790}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB4B10D3-93A7-45AE-8104-C9057D3DB790}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB4B10D3-93A7-45AE-8104-C9057D3DB790}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB4B10D3-93A7-45AE-8104-C9057D3DB790}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,5 +82,6 @@ Global
 		{CCF00EB9-FE9A-4302-82D6-B183DE6B297C} = {0E76D440-83B1-4D7A-BFE8-A2AFAD3420CD}
 		{151F1BA1-5D29-4345-B28E-89FC5840650E} = {0E76D440-83B1-4D7A-BFE8-A2AFAD3420CD}
 		{CF9F09E8-9077-4B1C-BA88-CE58F9B857A9} = {0E76D440-83B1-4D7A-BFE8-A2AFAD3420CD}
+		{DB4B10D3-93A7-45AE-8104-C9057D3DB790} = {634D72C7-060E-482B-8A3B-AFDD8FF47E16}
 	EndGlobalSection
 EndGlobal
