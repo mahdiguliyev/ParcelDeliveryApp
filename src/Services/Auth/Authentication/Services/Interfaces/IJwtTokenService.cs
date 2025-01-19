@@ -8,7 +8,7 @@ namespace Authentication.Services.Interfaces
     public interface IJwtTokenService
     {
         Task<IResult<AuthToken, DomainError>> GenerateAuthTokenAsync(LoginModel model);
-        Task<IResult<AuthToken, DomainError>> RegisterUserAndGenerateAuthTokenAsync(RegisterUserDto model);
-        Task<IResult<string, DomainError>> RegisterCurierAndGenerateAuthTokenAsync(RegisterCurierDto model);
+        Task<IResult<RegisterUserModel, DomainError>> RegisterUserAndGenerateAuthTokenAsync(RegisterUserDto model);
+        Task<IResult<RegisterUserModel, DomainError>> RegisterCurierAndGenerateAuthTokenAsync(RegisterCurierDto model);
     }
 }

@@ -51,22 +51,22 @@ namespace Authentication.Persistance.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("72fbf756-eace-4101-80bc-f845a92319cf"),
-                            ConcurrencyStamp = "607464b4-0d09-4565-9f4e-972403d16ff5",
+                            Id = new Guid("ad08eb6c-bca1-4f01-bd71-6317c3644038"),
+                            ConcurrencyStamp = "67605640-2b29-4ac4-9da4-d369d91b13bf",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = new Guid("8b16320d-fb1e-4158-ac80-60d64c49f109"),
-                            ConcurrencyStamp = "e6f977e4-5528-49ac-a68f-29b43d59444f",
+                            Id = new Guid("bfd1d6fb-aa61-43d8-8a80-f55d2f415bc9"),
+                            ConcurrencyStamp = "0b5e4ff8-8494-41ab-9e89-43516e00dbe8",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = new Guid("8f1695bd-04ab-4ca4-8cea-a7ce77938e68"),
-                            ConcurrencyStamp = "2ec0c91e-ed31-4e44-9119-bc164ee188f2",
+                            Id = new Guid("860cac86-9062-4ab5-a17b-e0321a06e5e4"),
+                            ConcurrencyStamp = "c13f0b2c-dedd-491d-aa9b-2bf0ba4592e5",
                             Name = "Curier",
                             NormalizedName = "CURIER"
                         });
@@ -177,10 +177,10 @@ namespace Authentication.Persistance.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3a6aca84-4914-48c8-85e0-646a25b8069b"),
+                            Id = new Guid("cf0ca3e3-e22d-4cc0-a8d4-7de509c135e7"),
                             About = "Admin User of App",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e0f00adf-a6e8-4833-a8ed-597a1885fe11",
+                            ConcurrencyStamp = "f829d12e-40c6-4e39-934a-8df412ae743c",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -188,19 +188,19 @@ namespace Authentication.Persistance.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAJeVqpM77URDjQkANPNx2wQ9OhY1A0Rd72HQgfaue0B6JZGQkpOGfz839XB0kaDbA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKW3nj0m3TGBK7o/+qizShhmjYEBbejGvx2X0NFNhFHm0a9RveQ1wBYKN1BoqKTV0w==",
                             PhoneNumber = "+9945555555555",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "3f9ef6c2-6073-426a-b9a1-2e65739d6641",
+                            SecurityStamp = "d977c6ff-bb2d-491d-a93f-c07c12435d59",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         },
                         new
                         {
-                            Id = new Guid("ceb22d5e-1731-443c-8ba8-a7e26cc1b776"),
+                            Id = new Guid("e6620abb-afeb-4325-87f3-c549d6b4bb20"),
                             About = "Editor User of App",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "400b9f44-ae49-4f54-8c32-491ee7a377e9",
+                            ConcurrencyStamp = "a10f70a1-abd3-4a88-9cb5-7f0ecbf03b1a",
                             Email = "user@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "User",
@@ -208,19 +208,19 @@ namespace Authentication.Persistance.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@GMAIL.COM",
                             NormalizedUserName = "USER",
-                            PasswordHash = "AQAAAAIAAYagAAAAELO0nLH7voVBFq532deDro3+bJhLqxn+V22vE2a9C5Oq8XijFFYUJTBFs8dI2oT/gw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKXMGt/vYNlw6bF9a7ntAFNKl9p0llTXtcRr1pj0oK927zzulfbZKpPQ3fnlyP8QAw==",
                             PhoneNumber = "+9945555555555",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "fa8512e5-1905-43a3-a790-2e909f33020a",
+                            SecurityStamp = "a5914679-ad41-4519-b2d0-4c95c4d4e51f",
                             TwoFactorEnabled = false,
                             UserName = "User"
                         },
                         new
                         {
-                            Id = new Guid("89b583b9-27e0-40b9-b558-b71a2416dbed"),
+                            Id = new Guid("feaffb12-e870-403c-bccb-2c925cbbb3bf"),
                             About = "Editor Curier of App",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9929a291-e14f-4631-9801-3c634669fce0",
+                            ConcurrencyStamp = "63a7821f-1937-4565-af26-c48246529f3f",
                             Email = "curier@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Curier",
@@ -228,10 +228,10 @@ namespace Authentication.Persistance.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "CURIER@GMAIL.COM",
                             NormalizedUserName = "CURIER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKnDw2iVQ95mpfRBKGPfWwVgg3/wFwNp2IGPq6osdWyTyoSnsF3PvY6yKVw8jIZqqQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDXCRVHa/jRf/sSMyZdj7Gl7PvhnrvBbNVLJU0uUy6TuGg8G7g10QE//1x5kyBz+UA==",
                             PhoneNumber = "+9945555555555",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "acd5b0e7-c7e4-4084-a7b9-fce17c166313",
+                            SecurityStamp = "2baa680c-9b4e-4469-a54a-c98b3e2cd074",
                             TwoFactorEnabled = false,
                             UserName = "Curier"
                         });

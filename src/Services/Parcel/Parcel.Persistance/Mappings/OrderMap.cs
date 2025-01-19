@@ -30,7 +30,7 @@ namespace Parcel.Persistance.Mappings
             builder.Property(o => o.Coortinates)
                 .HasMaxLength(50);
 
-            builder.Property(o => o.PhhoneNumber)
+            builder.Property(o => o.PhoneNumber)
                 .IsRequired()
                 .HasMaxLength(15);
 
@@ -55,7 +55,7 @@ namespace Parcel.Persistance.Mappings
                 TotalPrice = 70,
                 DestinationAddress = "Baku, Sumgayiq 12 mkr",
                 Coortinates = "Latitude: 51.507351-Longitude: -0.127758",
-                PhhoneNumber = "+994555555555",
+                PhoneNumber = "+994555555555",
                 OrderInfo = "Test information",
                 UserId = Guid.Parse("ceb22d5e-1731-443c-8ba8-a7e26cc1b776"),
             };
@@ -68,7 +68,7 @@ namespace Parcel.Persistance.Mappings
                 TotalPrice = 254,
                 DestinationAddress = "Baku, Sumgayiq 12 mkr",
                 Coortinates = "Latitude: 51.507351-Longitude: -0.127758",
-                PhhoneNumber = "+994555555555",
+                PhoneNumber = "+994555555555",
                 OrderInfo = "Test information",
                 UserId = Guid.Parse("ceb22d5e-1731-443c-8ba8-a7e26cc1b776"),
             };
@@ -81,7 +81,7 @@ namespace Parcel.Persistance.Mappings
                 TotalPrice = 110,
                 DestinationAddress = "Baku, Sumgayiq 12 mkr",
                 Coortinates = "Latitude: 51.507351-Longitude: -0.127758",
-                PhhoneNumber = "+994555555555",
+                PhoneNumber = "+994555555555",
                 OrderInfo = "Test information",
                 UserId = Guid.Parse("ceb22d5e-1731-443c-8ba8-a7e26cc1b776"),
             };

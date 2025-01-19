@@ -1,8 +1,15 @@
 using Authentication.Extensions;
 using Microsoft.OpenApi.Models;
+using Parcel.Persistance;
+using Parcel.Application;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddApplicationServices();
+builder.Services.AddInfrastrutureServices(builder.Configuration);
 builder.Services.AddJwtAuthentication();
 
 // Add services to the container.

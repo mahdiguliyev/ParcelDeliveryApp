@@ -53,12 +53,30 @@
     },
 
     // Parcel APIs
-
+    {
+      "UpstreamPathTemplate": "/gw/parcel/createorder",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/api/parcel/createorder",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 1111
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "User"
+      },
+      "SwaggerKey": "Parcel"
+    },
     {
       "UpstreamPathTemplate": "/gw/parcel/{id}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/parcel/{id}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -119,7 +137,7 @@
         {
           "Name": "API Parcel",
           "Version": "v1",
-          "Url": "https://localhost:1111/swagger/v1/swagger.json"
+          "Url": "http://localhost:1111/swagger/v1/swagger.json"
         }
       ]
     },

@@ -65,7 +65,7 @@ namespace Parcel.Persistance.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("PhhoneNumber")
+                    b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
@@ -94,17 +94,17 @@ namespace Parcel.Persistance.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e7c12843-f210-4fb2-aa39-767a4d5d1e61"),
+                            Id = new Guid("8be1a8d9-a536-4ec2-aaec-8d6d51f71475"),
                             Coortinates = "Latitude: 51.507351-Longitude: -0.127758",
                             CreatedByName = "Admin",
-                            CreatedDate = new DateTime(2025, 1, 19, 15, 11, 53, 670, DateTimeKind.Local).AddTicks(9217),
+                            CreatedDate = new DateTime(2025, 1, 19, 16, 47, 31, 253, DateTimeKind.Local).AddTicks(3042),
                             DestinationAddress = "Baku, Sumgayiq 12 mkr",
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedDate = new DateTime(2025, 1, 19, 15, 11, 53, 670, DateTimeKind.Local).AddTicks(9229),
+                            ModifiedDate = new DateTime(2025, 1, 19, 16, 47, 31, 253, DateTimeKind.Local).AddTicks(3055),
                             OrderInfo = "Test information",
-                            PhhoneNumber = "+994555555555",
+                            PhoneNumber = "+994555555555",
                             Status = 0,
                             Title = "Grocery Essentials Pack (Vegetables, Dairy, Grains)",
                             TotalPrice = 70m,
@@ -113,17 +113,17 @@ namespace Parcel.Persistance.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3f5e04f0-cd4f-46b9-9b29-96f56c420c34"),
+                            Id = new Guid("ced38686-3b71-4fa1-a2e6-da87866f60ab"),
                             Coortinates = "Latitude: 51.507351-Longitude: -0.127758",
                             CreatedByName = "Admin",
-                            CreatedDate = new DateTime(2025, 1, 19, 15, 11, 53, 670, DateTimeKind.Local).AddTicks(9256),
+                            CreatedDate = new DateTime(2025, 1, 19, 16, 47, 31, 253, DateTimeKind.Local).AddTicks(3093),
                             DestinationAddress = "Baku, Sumgayiq 12 mkr",
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedDate = new DateTime(2025, 1, 19, 15, 11, 53, 670, DateTimeKind.Local).AddTicks(9256),
+                            ModifiedDate = new DateTime(2025, 1, 19, 16, 47, 31, 253, DateTimeKind.Local).AddTicks(3093),
                             OrderInfo = "Test information",
-                            PhhoneNumber = "+994555555555",
+                            PhoneNumber = "+994555555555",
                             Status = 0,
                             Title = "Air Jordan Retro Sneakers",
                             TotalPrice = 254m,
@@ -132,17 +132,17 @@ namespace Parcel.Persistance.Migrations
                         },
                         new
                         {
-                            Id = new Guid("5d40d8a1-b981-44df-9575-bde2475eb20f"),
+                            Id = new Guid("d6f7ebcb-055b-498c-89fb-88f22e4a8fc6"),
                             Coortinates = "Latitude: 51.507351-Longitude: -0.127758",
                             CreatedByName = "Admin",
-                            CreatedDate = new DateTime(2025, 1, 19, 15, 11, 53, 670, DateTimeKind.Local).AddTicks(9271),
+                            CreatedDate = new DateTime(2025, 1, 19, 16, 47, 31, 253, DateTimeKind.Local).AddTicks(3107),
                             DestinationAddress = "Baku, Sumgayiq 12 mkr",
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedDate = new DateTime(2025, 1, 19, 15, 11, 53, 670, DateTimeKind.Local).AddTicks(9271),
+                            ModifiedDate = new DateTime(2025, 1, 19, 16, 47, 31, 253, DateTimeKind.Local).AddTicks(3107),
                             OrderInfo = "Test information",
-                            PhhoneNumber = "+994555555555",
+                            PhoneNumber = "+994555555555",
                             Status = 0,
                             Title = "Wireless Bluetooth Headphones",
                             TotalPrice = 110m,

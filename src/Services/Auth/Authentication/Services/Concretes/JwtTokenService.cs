@@ -48,6 +48,7 @@ namespace Authentication.Services.Concretes
             {
                 new Claim(JwtRegisteredClaimNames.Name, user.UserName),
                 new Claim("Role", string.Join(",", roles)),
+                new Claim("ss-parcel-ui", user.Id.ToString()),
             };
 
             var tokenOptions = new JwtSecurityToken(
@@ -62,7 +63,7 @@ namespace Authentication.Services.Concretes
             return Result.Success<AuthToken, DomainError>(new AuthToken(tokenString, (int)expirationTimeStamp.Subtract(DateTime.Now).TotalSeconds));
         }
 
-        public async Task<IResult<AuthToken, DomainError>> RegisterUserAndGenerateAuthTokenAsync(RegisterUserDto model)
+        public async Task<IResult<RegisterUserModel, DomainError>> RegisterUserAndGenerateAuthTokenAsync(RegisterUserDto model)
         {
             var user = new User
             {
@@ -77,7 +78,7 @@ namespace Authentication.Services.Concretes
             var roleExists = await _roleManager.RoleExistsAsync("User");
             if (!roleExists)
             {
-                return Result.Failure<AuthToken, DomainError>(DomainError.BusinessError("Role not found."));
+                return Result.Failure<RegisterUserModel, DomainError>(DomainError.BusinessError("Role not found."));
             }
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -105,7 +106,7 @@ namespace Authentication.Services.Concretes
 
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
 
-                return Result.Success<AuthToken, DomainError>(new AuthToken(tokenString, (int)expirationTimeStamp.Subtract(DateTime.Now).TotalSeconds));
+                return Result.Success<RegisterUserModel, DomainError>(new RegisterUserModel() { Username = user.UserName});
             }
 
             string errorDetail = string.Empty;
@@ -114,10 +115,10 @@ namespace Authentication.Services.Concretes
                 errorDetail += "-" + error.Description + ";";
             }
 
-            return Result.Failure<AuthToken, DomainError>(DomainError.BusinessError(errorDetail));
+            return Result.Failure<RegisterUserModel, DomainError>(DomainError.BusinessError(errorDetail));
         }
 
-        public async Task<IResult<string, DomainError>> RegisterCurierAndGenerateAuthTokenAsync(RegisterCurierDto model)
+        public async Task<IResult<RegisterUserModel, DomainError>> RegisterCurierAndGenerateAuthTokenAsync(RegisterCurierDto model)
         {
             var user = new User
             {
@@ -132,7 +133,7 @@ namespace Authentication.Services.Concretes
             var roleExists = await _roleManager.RoleExistsAsync("Curier");
             if (!roleExists)
             {
-                return Result.Failure<string, DomainError>(DomainError.BusinessError("Role not found."));
+                return Result.Failure<RegisterUserModel, DomainError>(DomainError.BusinessError("Role not found."));
             }
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -142,7 +143,7 @@ namespace Authentication.Services.Concretes
                 
                 await _userManager.AddToRoleAsync(user, "Curier");
 
-                return Result.Success<string, DomainError>("Curier is created successfully.");
+                return Result.Success<RegisterUserModel, DomainError>(new RegisterUserModel() { Username = user.UserName });
             }
 
             string errorDetail = string.Empty;
@@ -151,7 +152,7 @@ namespace Authentication.Services.Concretes
                 errorDetail += "-" + error.Description + ";";
             }
 
-            return Result.Failure<string, DomainError>(DomainError.BusinessError(errorDetail));
+            return Result.Failure<RegisterUserModel, DomainError>(DomainError.BusinessError(errorDetail));
         }
     }
 }

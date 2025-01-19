@@ -16,6 +16,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Auth\JwtConfiguration\JwtConfiguration.csproj" />
+    <ProjectReference Include="..\Parcel.Application\Parcel.Application.csproj" />
+    <ProjectReference Include="..\Parcel.Persistance\Parcel.Persistance.csproj" />
   </ItemGroup>
 
 </Project>

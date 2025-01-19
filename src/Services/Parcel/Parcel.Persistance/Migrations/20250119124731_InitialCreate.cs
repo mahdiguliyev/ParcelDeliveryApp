@@ -23,7 +23,7 @@ namespace Parcel.Persistance.Migrations
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DestinationAddress = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Coortinates = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    PhhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     OrderInfo = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CurierId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -42,12 +42,12 @@ namespace Parcel.Persistance.Migrations
 
             migrationBuilder.InsertData(
                 table: "Orders",
-                columns: new[] { "Id", "Coortinates", "CreatedByName", "CreatedDate", "CurierId", "DestinationAddress", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedDate", "OrderInfo", "PhhoneNumber", "Status", "Title", "TotalPrice", "UserId", "Weight" },
+                columns: new[] { "Id", "Coortinates", "CreatedByName", "CreatedDate", "CurierId", "DestinationAddress", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedDate", "OrderInfo", "PhoneNumber", "Status", "Title", "TotalPrice", "UserId", "Weight" },
                 values: new object[,]
                 {
-                    { new Guid("3f5e04f0-cd4f-46b9-9b29-96f56c420c34"), "Latitude: 51.507351-Longitude: -0.127758", "Admin", new DateTime(2025, 1, 19, 15, 11, 53, 670, DateTimeKind.Local).AddTicks(9256), null, "Baku, Sumgayiq 12 mkr", true, false, "Admin", new DateTime(2025, 1, 19, 15, 11, 53, 670, DateTimeKind.Local).AddTicks(9256), "Test information", "+994555555555", 0, "Air Jordan Retro Sneakers", 254m, new Guid("ceb22d5e-1731-443c-8ba8-a7e26cc1b776"), 0.80000000000000004 },
-                    { new Guid("5d40d8a1-b981-44df-9575-bde2475eb20f"), "Latitude: 51.507351-Longitude: -0.127758", "Admin", new DateTime(2025, 1, 19, 15, 11, 53, 670, DateTimeKind.Local).AddTicks(9271), null, "Baku, Sumgayiq 12 mkr", true, false, "Admin", new DateTime(2025, 1, 19, 15, 11, 53, 670, DateTimeKind.Local).AddTicks(9271), "Test information", "+994555555555", 0, "Wireless Bluetooth Headphones", 110m, new Guid("ceb22d5e-1731-443c-8ba8-a7e26cc1b776"), 0.10000000000000001 },
-                    { new Guid("e7c12843-f210-4fb2-aa39-767a4d5d1e61"), "Latitude: 51.507351-Longitude: -0.127758", "Admin", new DateTime(2025, 1, 19, 15, 11, 53, 670, DateTimeKind.Local).AddTicks(9217), null, "Baku, Sumgayiq 12 mkr", true, false, "Admin", new DateTime(2025, 1, 19, 15, 11, 53, 670, DateTimeKind.Local).AddTicks(9229), "Test information", "+994555555555", 0, "Grocery Essentials Pack (Vegetables, Dairy, Grains)", 70m, new Guid("ceb22d5e-1731-443c-8ba8-a7e26cc1b776"), 1.2 }
+                    { new Guid("8be1a8d9-a536-4ec2-aaec-8d6d51f71475"), "Latitude: 51.507351-Longitude: -0.127758", "Admin", new DateTime(2025, 1, 19, 16, 47, 31, 253, DateTimeKind.Local).AddTicks(3042), null, "Baku, Sumgayiq 12 mkr", true, false, "Admin", new DateTime(2025, 1, 19, 16, 47, 31, 253, DateTimeKind.Local).AddTicks(3055), "Test information", "+994555555555", 0, "Grocery Essentials Pack (Vegetables, Dairy, Grains)", 70m, new Guid("ceb22d5e-1731-443c-8ba8-a7e26cc1b776"), 1.2 },
+                    { new Guid("ced38686-3b71-4fa1-a2e6-da87866f60ab"), "Latitude: 51.507351-Longitude: -0.127758", "Admin", new DateTime(2025, 1, 19, 16, 47, 31, 253, DateTimeKind.Local).AddTicks(3093), null, "Baku, Sumgayiq 12 mkr", true, false, "Admin", new DateTime(2025, 1, 19, 16, 47, 31, 253, DateTimeKind.Local).AddTicks(3093), "Test information", "+994555555555", 0, "Air Jordan Retro Sneakers", 254m, new Guid("ceb22d5e-1731-443c-8ba8-a7e26cc1b776"), 0.80000000000000004 },
+                    { new Guid("d6f7ebcb-055b-498c-89fb-88f22e4a8fc6"), "Latitude: 51.507351-Longitude: -0.127758", "Admin", new DateTime(2025, 1, 19, 16, 47, 31, 253, DateTimeKind.Local).AddTicks(3107), null, "Baku, Sumgayiq 12 mkr", true, false, "Admin", new DateTime(2025, 1, 19, 16, 47, 31, 253, DateTimeKind.Local).AddTicks(3107), "Test information", "+994555555555", 0, "Wireless Bluetooth Headphones", 110m, new Guid("ceb22d5e-1731-443c-8ba8-a7e26cc1b776"), 0.10000000000000001 }
                 });
         }
 

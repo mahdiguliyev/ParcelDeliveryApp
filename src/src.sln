@@ -42,6 +42,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parcel.Domain", "Services\P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parcel.Persistance", "Services\Parcel\Parcel.Persistance\Parcel.Persistance.csproj", "{F4E41C3A-07EB-40A8-903F-8C2EC08FFF55}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parcel.Application", "Services\Parcel\Parcel.Application\Parcel.Application.csproj", "{6D38A24D-42A8-48E8-AFBE-5E21AA96379B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,6 +90,10 @@ Global
 		{F4E41C3A-07EB-40A8-903F-8C2EC08FFF55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4E41C3A-07EB-40A8-903F-8C2EC08FFF55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4E41C3A-07EB-40A8-903F-8C2EC08FFF55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D38A24D-42A8-48E8-AFBE-5E21AA96379B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D38A24D-42A8-48E8-AFBE-5E21AA96379B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D38A24D-42A8-48E8-AFBE-5E21AA96379B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D38A24D-42A8-48E8-AFBE-5E21AA96379B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,5 +112,6 @@ Global
 		{CB18EB80-B506-4EA8-B3BA-26185C6ECD96} = {2B52C538-EDC3-48AB-A8C6-D593FBAF2360}
 		{6C5709BC-E5E6-45F7-8606-A0F59EFB130C} = {13D5CF58-5195-435E-82BF-437AB0FD34F0}
 		{F4E41C3A-07EB-40A8-903F-8C2EC08FFF55} = {13D5CF58-5195-435E-82BF-437AB0FD34F0}
+		{6D38A24D-42A8-48E8-AFBE-5E21AA96379B} = {13D5CF58-5195-435E-82BF-437AB0FD34F0}
 	EndGlobalSection
 EndGlobal

@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Parcel.Application\Parcel.Application.csproj" />
     <ProjectReference Include="..\Parcel.Domain\Parcel.Domain.csproj" />
   </ItemGroup>
 

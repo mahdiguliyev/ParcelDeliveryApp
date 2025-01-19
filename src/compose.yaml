@@ -1,5 +1,5 @@
 ﻿services:
-  authentication-api-db:
+  authentication-db:
     image: postgres:15-alpine
     container_name: authentication-db
     ports:
@@ -11,7 +11,7 @@
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  parcel-api-db:
+  parcel-db:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: parcel-db
     ports:
@@ -31,7 +31,7 @@
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:3333
     depends_on:
-      - authentication-api-db
+      - authentication-db
     volumes:
       - ~/.aspnet/https:/root/.aspnet/https:ro
 
@@ -46,7 +46,7 @@
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:1111
     depends_on:
-      - parcel-api-db
+      - parcel-db
     volumes:
       - ~/.aspnet/https:/root/.aspnet/https:ro
 
