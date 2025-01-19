@@ -11,8 +11,8 @@ namespace Authentication.Extensions
     public static class JwtExtensions
     {
         public const string SecurityKey = "@_parcel_delivery_app_sec_key_2025_@";
-        public const string ValidIssuer = "parce_delivery_app_2025_@";
-        public const string validAudience = "@_parce_delivery_app_2025_@";
+        //public const string ValidIssuer = "parce_delivery_app_2025_@";
+        //public const string validAudience = "@_parce_delivery_app_2025_@";
 
         public static void AddJwtAuthentication(this IServiceCollection services)
         {
@@ -26,10 +26,10 @@ namespace Authentication.Extensions
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = true,
-                    ValidIssuer = ValidIssuer,
-                    ValidateAudience = true,
-                    ValidAudience = validAudience,
+                    ValidateIssuer = false,
+                    //ValidIssuer = ValidIssuer,
+                    ValidateAudience = false,
+                    //ValidAudience = validAudience,
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SecurityKey)),
                     RoleClaimType = ClaimTypes.Role

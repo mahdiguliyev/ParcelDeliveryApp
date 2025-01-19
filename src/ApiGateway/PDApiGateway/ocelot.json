@@ -72,28 +72,6 @@
       },
       "SwaggerKey": "Parcel"
     },
-    {
-      "UpstreamPathTemplate": "/gw/parcel/{id}",
-      "UpstreamHttpMethod": [ "GET" ],
-      "DownstreamPathTemplate": "/api/parcel/{id}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 1111
-        }
-      ],
-      "FileCacheOptions": {
-        "TtlSeconds": 30
-      },
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer"
-      },
-      "RouteClaimsRequirement": {
-        "Role": "Admin"
-      },
-      "SwaggerKey": "Parcel"
-    },
 
     // StaffManagement APIs
 

@@ -46,14 +46,12 @@ namespace Authentication.Services.Concretes
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.Role, string.Join(",", roles)),
+                new Claim("name", user.UserName),
+                new Claim("role", string.Join(",", roles)),
                 new Claim("ss-parcel-ui", user.Id.ToString()),
             };
 
             var tokenOptions = new JwtSecurityToken(
-                issuer: JwtExtensions.ValidIssuer,
-                audience: JwtExtensions.validAudience,
                 claims: claims,
                 expires: expirationTimeStamp,
                 signingCredentials: signingCredentials
@@ -87,26 +85,6 @@ namespace Authentication.Services.Concretes
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, "User");
-
-                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtExtensions.SecurityKey));
-                var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-                var expirationTimeStamp = DateTime.Now.AddMinutes(10);
-
-                var claims = new List<Claim>
-                {
-                    new Claim(JwtRegisteredClaimNames.Name, user.UserName),
-                    new Claim("Role", "User"),
-                };
-
-                var tokenOptions = new JwtSecurityToken(
-                    issuer: JwtExtensions.ValidIssuer,
-                    audience: JwtExtensions.validAudience,
-                    claims: claims,
-                    expires: expirationTimeStamp,
-                    signingCredentials: signingCredentials
-                    );
-
-                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
 
                 return Result.Success<RegisterUserModel, DomainError>(new RegisterUserModel() { Username = user.UserName});
             }
