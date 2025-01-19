@@ -2,13 +2,17 @@
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 
 namespace Authentication.Extensions
 {
     public static class JwtExtensions
     {
         public const string SecurityKey = "@_parcel_delivery_app_sec_key_2025_@";
-        public const string ValidIssuer = "https://localhost:3333";
+        //public const string ValidIssuer = "https://localhost:3333";
+        //public const string validAudience = "https://localhost:3333";
 
         public static void AddJwtAuthentication(this IServiceCollection services)
         {
@@ -16,16 +20,19 @@ namespace Authentication.Extensions
             {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultSignInScheme = IdentityConstants.ApplicationScheme;
             })
             .AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = true,
-                    ValidIssuer = ValidIssuer,
+                    ValidateIssuer = false,
+                    //ValidIssuer = ValidIssuer,
                     ValidateAudience = false,
+                    //ValidAudience = validAudience,
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SecurityKey))
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SecurityKey)),
+                    RoleClaimType = ClaimTypes.Role
                 };
             });
         }

@@ -8,11 +8,11 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddJwtAuthentication();
-
 builder.Services.AddDbContext<AuthDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQL")));
 
 builder.Services.AddPersistenceServices();
+builder.Services.AddJwtAuthentication();
+
 
 // Register custom services
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
