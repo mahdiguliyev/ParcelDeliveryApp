@@ -1,30 +1,54 @@
 ﻿services:
-  postgres-db:
-    image: postgres:15-alpine # Use PostgreSQL 15 Alpine image
-    container_name: postgres-db
+  authentication-api-db:
+    image: postgres:15-alpine
+    container_name: authentication-db
     ports:
-      - "5432:5432" # Expose PostgreSQL on default port
+      - "5432:5432"
     environment:
       POSTGRES_USER: "parcel_auth"
       POSTGRES_PASSWORD: "ParcelAuth2025@"
       POSTGRES_DB: "Authentication"
     volumes:
-      - postgres_data:/var/lib/postgresql/data # Persistent storage for database data
+      - postgres_data:/var/lib/postgresql/data
+
+  parcel-api-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: parcel-db
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "ParcelApi2025@"
   
   authentication:
-    image: authentication
+    image: authentication.api
     build:
       context: .
       dockerfile: Services/Auth/Authentication/Dockerfile
     ports:
-      - "3333:3333" # Map container's port 3333 to host port 3333
+      - "3333:3333"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:3333 # Ensure app listens on port 3333
+      - ASPNETCORE_URLS=http://+:3333
     depends_on:
-      - postgres-db # Ensure PostgreSQL starts before this service
+      - authentication-api-db
+    volumes:
+      - ~/.aspnet/https:/root/.aspnet/https:ro
+
+  parcel:
+    image: parcel.api
+    build:
+      context: .
+      dockerfile: Services/Parcel/Parcel.API/Dockerfile
+    ports:
+      - "1111:1111"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:1111
+    depends_on:
+      - parcel-api-db
     volumes:
       - ~/.aspnet/https:/root/.aspnet/https:ro
 
 volumes:
-  postgres_data: # Define a named volume for PostgreSQL persistence
+  postgres_data:

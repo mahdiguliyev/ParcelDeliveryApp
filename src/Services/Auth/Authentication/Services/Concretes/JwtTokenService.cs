@@ -1,16 +1,15 @@
-﻿using Authentication.Extensions;
+﻿using Authentication.Domain.Dtos;
+using Authentication.Domain.Entities;
+using Authentication.Extensions;
+using Authentication.Models;
 using Authentication.Services.Interfaces;
+using CSharpFunctionalExtensions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using PD.Shared.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.AspNetCore.Identity;
-using Authentication.Models;
-using Authentication.Domain.Entities;
-using Authentication.Domain.Dtos;
-using System.Data;
-using CSharpFunctionalExtensions;
-using PD.Shared.Models;
 
 namespace Authentication.Services.Concretes
 {
