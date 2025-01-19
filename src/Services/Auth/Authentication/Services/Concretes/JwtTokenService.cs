@@ -52,8 +52,8 @@ namespace Authentication.Services.Concretes
             };
 
             var tokenOptions = new JwtSecurityToken(
-                //issuer: JwtExtensions.ValidIssuer,
-                //audience: JwtExtensions.validAudience,
+                issuer: JwtExtensions.ValidIssuer,
+                audience: JwtExtensions.validAudience,
                 claims: claims,
                 expires: expirationTimeStamp,
                 signingCredentials: signingCredentials
@@ -99,7 +99,8 @@ namespace Authentication.Services.Concretes
                 };
 
                 var tokenOptions = new JwtSecurityToken(
-                    //issuer: JwtExtensions.ValidIssuer,
+                    issuer: JwtExtensions.ValidIssuer,
+                    audience: JwtExtensions.validAudience,
                     claims: claims,
                     expires: expirationTimeStamp,
                     signingCredentials: signingCredentials
@@ -119,7 +120,7 @@ namespace Authentication.Services.Concretes
             return Result.Failure<RegisterUserModel, DomainError>(DomainError.BusinessError(errorDetail));
         }
 
-        public async Task<IResult<RegisterUserModel, DomainError>> RegisterCurierAndGenerateAuthTokenAsync(RegisterCurierDto model)
+        public async Task<IResult<RegisterUserModel, DomainError>> RegisterCurierAsync(RegisterCurierDto model)
         {
             var user = new User
             {

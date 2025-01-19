@@ -9,6 +9,6 @@ namespace Authentication.Services.Interfaces
     {
         Task<IResult<AuthToken, DomainError>> GenerateAuthTokenAsync(LoginModel model);
         Task<IResult<RegisterUserModel, DomainError>> RegisterUserAndGenerateAuthTokenAsync(RegisterUserDto model);
-        Task<IResult<RegisterUserModel, DomainError>> RegisterCurierAndGenerateAuthTokenAsync(RegisterCurierDto model);
+        Task<IResult<RegisterUserModel, DomainError>> RegisterCurierAsync(RegisterCurierDto model);
     }
 }

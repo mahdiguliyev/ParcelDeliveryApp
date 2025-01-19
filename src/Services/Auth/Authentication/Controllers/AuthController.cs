@@ -56,7 +56,7 @@ namespace Authentication.Controllers
                 return BadRequest(ModelState);
             }
 
-            var registerResult = await _jwtTokenService.RegisterCurierAndGenerateAuthTokenAsync(model);
+            var registerResult = await _jwtTokenService.RegisterCurierAsync(model);
 
             return registerResult.IsSuccess ?
                 Ok(ApiResponse<RegisterUserModel>.Success(registerResult.Value)) :
