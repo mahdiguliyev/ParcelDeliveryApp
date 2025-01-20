@@ -30,6 +30,10 @@ namespace Parcel.Persistance.Mappings
             builder.Property(o => o.Coortinates)
                 .HasMaxLength(50);
 
+            builder.Property(o => o.CurrentCoortinates)
+                .HasMaxLength(50)
+                .IsRequired(false);
+
             builder.Property(o => o.PhoneNumber)
                 .IsRequired()
                 .HasMaxLength(15);

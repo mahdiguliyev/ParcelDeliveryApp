@@ -9,6 +9,7 @@ namespace Parcel.Domain.Entities
         public decimal TotalPrice { get; set; }
         public string DestinationAddress { get; set; }
         public string Coortinates { get; set; }
+        public string CurrentCoortinates { get; set; }
         public string PhoneNumber { get; set; }
         public string? OrderInfo { get; set; }
         public Guid UserId { get; set; }
