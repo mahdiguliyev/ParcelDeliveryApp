@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Parcel.Application.Features.Orders.Commands.AssignOrderToCurier;
 using Parcel.Application.Features.Orders.Commands.CancelOrder;
 using Parcel.Application.Features.Orders.Commands.ChangeDestOrder;
 using Parcel.Application.Features.Orders.Commands.ChangeStatusOrder;
@@ -119,6 +120,19 @@ namespace Parcel.API.Controllers
             return result.IsSuccess ?
                 Ok(ApiResponse<Guid>.Success(result.Value)) :
                 BadRequest(ApiResponse<Guid>.Failure(result.Error.ErrorMessage));
+        }
+
+        [HttpPost("assignordertocurier")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> AssignOrderToCurier(AssignOrderToCurierCommand command)
+        {
+            var result = await _mediator.Send(command);
+
+            return result.IsSuccess ?
+                Ok(ApiResponse<AssignOrderToCurierDto>.Success(result.Value)) :
+                BadRequest(ApiResponse<AssignOrderToCurierDto>.Failure(result.Error.ErrorMessage));
         }
     }
 }

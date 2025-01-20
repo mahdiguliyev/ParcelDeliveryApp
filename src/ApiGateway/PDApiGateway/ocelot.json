@@ -185,6 +185,26 @@
         "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "Admin"
       },
       "SwaggerKey": "Parcel"
+    },
+
+    {
+      "UpstreamPathTemplate": "/gw/parcel/assignordertocurier",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/api/parcel/assignordertocurier",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 1111
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "Admin"
+      },
+      "SwaggerKey": "Parcel"
     }
   ],
   "SwaggerEndPoints": [
