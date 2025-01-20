@@ -30,7 +30,7 @@ namespace Parcel.Application.Features.Orders.Queries.GetOrderDetailQuery
                 return Result.Failure<OrderDetailDto, DomainError>(DomainError.BusinessError("User information is not correct."));
             }
 
-            var order = await _orderRepository.GetFirstOrDefaultAsync(o => o.UserId == userId.Value && o.Id == request.OrderId && !o.IsDeleted && o.IsActive);
+            var order = await _orderRepository.GetFirstOrDefaultAsync(o => (o.UserId == userId.Value || o.CurierId == userId.Value) && o.Id == request.OrderId && !o.IsDeleted && o.IsActive);
 
             if (order == null)
                 return Result.Failure<OrderDetailDto, DomainError>(DomainError.BusinessError("Order not found related to the user."));

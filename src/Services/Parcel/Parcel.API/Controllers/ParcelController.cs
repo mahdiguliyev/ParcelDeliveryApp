@@ -75,7 +75,7 @@ namespace Parcel.API.Controllers
         [HttpGet("getorderdetail")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "User,Curier")]
         public async Task<IActionResult> GetOrderDetail(GetOrderDetailQuery command)
         {
             var result = await _mediator.Send(command);
