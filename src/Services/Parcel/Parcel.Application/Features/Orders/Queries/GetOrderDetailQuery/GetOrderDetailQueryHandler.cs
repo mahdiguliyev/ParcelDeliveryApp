@@ -8,7 +8,7 @@ using PD.Shared.Models;
 
 namespace Parcel.Application.Features.Orders.Queries.GetOrderDetailQuery
 {
-    public class GetOrderDetailQueryHandler : IRequestHandler<GetOrderDetailQuery, IResult<OrderDetailDto, DomainError>>
+    public class GetOrderDetailQueryHandler : IRequestHandler<GetOrderDetailQuery, Result<OrderDetailDto, DomainError>>
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IMapper _mapper;
@@ -20,7 +20,7 @@ namespace Parcel.Application.Features.Orders.Queries.GetOrderDetailQuery
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
         }
-        public async Task<IResult<OrderDetailDto, DomainError>> Handle(GetOrderDetailQuery request, CancellationToken cancellationToken)
+        public async Task<Result<OrderDetailDto, DomainError>> Handle(GetOrderDetailQuery request, CancellationToken cancellationToken)
         {
             var token = _httpContextAccessor.HttpContext?.Request.Headers["Authorization"].ToString();
             var userId = JwtHelper.GetUserIdFromToken(token);
@@ -30,7 +30,7 @@ namespace Parcel.Application.Features.Orders.Queries.GetOrderDetailQuery
                 return Result.Failure<OrderDetailDto, DomainError>(DomainError.BusinessError("User information is not correct."));
             }
 
-            var order = await _orderRepository.GetFirstOrDefaultAsync(o => o.UserId == userId.Value && o.Id == request.OrderId);
+            var order = await _orderRepository.GetFirstOrDefaultAsync(o => o.UserId == userId.Value && o.Id == request.OrderId && !o.IsDeleted);
 
             if (order == null)
                 return Result.Failure<OrderDetailDto, DomainError>(DomainError.BusinessError("Order not found related to the user."));

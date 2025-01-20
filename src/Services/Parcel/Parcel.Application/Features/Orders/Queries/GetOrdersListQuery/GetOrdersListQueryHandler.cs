@@ -8,7 +8,7 @@ using PD.Shared.Models;
 
 namespace Parcel.Application.Features.Orders.Queries.GetOrdersListQuery
 {
-    public class GetOrdersListQueryHandler : IRequestHandler<GetOrdersListQuery, IResult<List<OrdersDto>, DomainError>>
+    public class GetOrdersListQueryHandler : IRequestHandler<GetOrdersListQuery, Result<List<OrdersDto>, DomainError>>
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IMapper _mapper;
@@ -21,7 +21,7 @@ namespace Parcel.Application.Features.Orders.Queries.GetOrdersListQuery
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task<IResult<List<OrdersDto>, DomainError>> Handle(GetOrdersListQuery request, CancellationToken cancellationToken)
+        public async Task<Result<List<OrdersDto>, DomainError>> Handle(GetOrdersListQuery request, CancellationToken cancellationToken)
         {
             var token = _httpContextAccessor.HttpContext?.Request.Headers["Authorization"].ToString();
             var userId = JwtHelper.GetUserIdFromToken(token);

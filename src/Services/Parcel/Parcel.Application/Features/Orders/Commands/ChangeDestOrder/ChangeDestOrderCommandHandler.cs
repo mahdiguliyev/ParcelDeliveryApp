@@ -3,10 +3,8 @@ using CSharpFunctionalExtensions;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Parcel.Application.Contracts.Persistance;
-using Parcel.Application.Features.Orders.Commands.CreateOrder;
 using Parcel.Application.Features.Orders.Queries.GetOrderDetailQuery;
 using Parcel.Application.Helpers;
-using Parcel.Domain.Entities;
 using PD.Shared.Enums;
 using PD.Shared.Models;
 
@@ -37,11 +35,11 @@ namespace Parcel.Application.Features.Orders.Commands.ChangeDestOrder
 
             var order = await _orderRepository.GetFirstOrDefaultAsync(o => o.UserId == userId.Value && o.Id == request.OrderId);
 
-            if(order.Status == (int)OrderStatus.DELIVEREDCURIER)
-                return Result.Failure<OrderDetailDto, DomainError>(DomainError.BusinessError("Order is delivered to currier. You cannot change order informations."));
-
             if (order == null)
                 return Result.Failure<OrderDetailDto, DomainError>(DomainError.BusinessError("Order not found related to the user."));
+
+            if (order.Status == (int)OrderStatus.DELIVEREDCURIER || order.Status == (int)OrderStatus.CANCELED)
+                return Result.Failure<OrderDetailDto, DomainError>(DomainError.BusinessError("Canceled or Delivered order's information cannot be changed."));
             
             order.DestinationAddress = request.DestinationAddress;
             order.Coortinates = request.Coortinates;

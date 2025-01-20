@@ -4,7 +4,7 @@ using PD.Shared.Models;
 
 namespace Parcel.Application.Features.Orders.Queries.GetOrdersListQuery
 {
-    public class GetOrdersListQuery : IRequest<IResult<List<OrdersDto>, DomainError>>
+    public class GetOrdersListQuery : IRequest<Result<List<OrdersDto>, DomainError>>
     {
     }
 }

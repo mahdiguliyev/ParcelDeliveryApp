@@ -1,13 +1,15 @@
 ﻿using CSharpFunctionalExtensions;
 using MediatR;
 using PD.Shared.Models;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Parcel.Application.Features.Orders.Queries.GetOrderDetailQuery
+namespace Parcel.Application.Features.Orders.Commands.CancelOrder
 {
-    public class GetOrderDetailQuery : IRequest<Result<OrderDetailDto, DomainError>>
+    public class CancelOrderCommand : IRequest<Result<Guid, DomainError>>
     {
         [Required(ErrorMessage = "Order id is required.")]
+        [DefaultValue("")]
         public Guid OrderId { get; set; }
     }
 }

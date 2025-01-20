@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Orders\Commands\DeleteOrder\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\PD.Shared\PD.Shared.csproj" />
     <ProjectReference Include="..\Parcel.Domain\Parcel.Domain.csproj" />
   </ItemGroup>

@@ -2,6 +2,7 @@
 using MediatR;
 using Parcel.Application.Features.Orders.Queries.GetOrderDetailQuery;
 using PD.Shared.Models;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Parcel.Application.Features.Orders.Commands.ChangeDestOrder
@@ -9,6 +10,7 @@ namespace Parcel.Application.Features.Orders.Commands.ChangeDestOrder
     public class ChangeDestOrderCommand : IRequest<Result<OrderDetailDto, DomainError>>
     {
         [Required(ErrorMessage = "Order id is required.")]
+        [DefaultValue("")]
         public Guid OrderId { get; set; }
 
         [Required(ErrorMessage = "Destination address is required.")]
