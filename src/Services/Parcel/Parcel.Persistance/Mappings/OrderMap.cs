@@ -48,7 +48,7 @@ namespace Parcel.Persistance.Mappings
             builder.Property(o => o.CurierId)
                 .IsRequired(false);
 
-            builder.Property(o => o.Title)
+            builder.Property(o => o.RejectedOrCompletedReason)
                 .IsRequired(false)
                 .HasMaxLength(250);
 
