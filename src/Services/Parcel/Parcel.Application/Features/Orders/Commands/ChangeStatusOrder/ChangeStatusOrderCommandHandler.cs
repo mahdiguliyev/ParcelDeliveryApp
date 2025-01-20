@@ -1,6 +1,8 @@
 ﻿using CSharpFunctionalExtensions;
 using MediatR;
 using Parcel.Application.Contracts.Persistance;
+using Parcel.Application.Features.Orders.Commands.RejectOrCompleteOrder;
+using PD.Shared.Enums;
 using PD.Shared.Models;
 
 namespace Parcel.Application.Features.Orders.Commands.ChangeStatusOrder
@@ -23,6 +25,9 @@ namespace Parcel.Application.Features.Orders.Commands.ChangeStatusOrder
 
             if (order.Status == (int)request.Status)
                 return Result.Failure<Guid, DomainError>(DomainError.BusinessError("Status of order is the status, you want to change."));
+
+            if (!Enum.IsDefined(typeof(OrderStatus), request.Status))
+                return Result.Failure<Guid, DomainError>(DomainError.BusinessError("Status is not defined."));
 
             order.Status = (int)request.Status;
 

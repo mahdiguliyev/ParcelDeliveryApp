@@ -6,6 +6,7 @@ using Parcel.Application.Features.Orders.Commands.CancelOrder;
 using Parcel.Application.Features.Orders.Commands.ChangeDestOrder;
 using Parcel.Application.Features.Orders.Commands.ChangeStatusOrder;
 using Parcel.Application.Features.Orders.Commands.CreateOrder;
+using Parcel.Application.Features.Orders.Commands.RejectOrCompleteOrder;
 using Parcel.Application.Features.Orders.Commands.UpdateCurrentCoordinatesOrder;
 using Parcel.Application.Features.Orders.Queries.GetAllOrdersQuery;
 using Parcel.Application.Features.Orders.Queries.GetOrderDetailQuery;
@@ -162,5 +163,19 @@ namespace Parcel.API.Controllers
                 Ok(ApiResponse<UpdateCurrentCoordinatesOrderDto>.Success(result.Value)) :
                 BadRequest(ApiResponse<UpdateCurrentCoordinatesOrderDto>.Failure(result.Error.ErrorMessage));
         }
+
+        [HttpPost("rejectorcompleteorder")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "Curier")]
+        public async Task<IActionResult> RejectOrCompleteOrder(RejectOrCompleteOrderCommand command)
+        {
+            var result = await _mediator.Send(command);
+
+            return result.IsSuccess ?
+                Ok(ApiResponse<RejectOrCompleteOrderDto>.Success(result.Value)) :
+                BadRequest(ApiResponse<RejectOrCompleteOrderDto>.Failure(result.Error.ErrorMessage));
+        }
+
     }
 }

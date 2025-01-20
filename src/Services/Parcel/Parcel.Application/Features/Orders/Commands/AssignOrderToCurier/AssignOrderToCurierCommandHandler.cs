@@ -30,6 +30,7 @@ namespace Parcel.Application.Features.Orders.Commands.AssignOrderToCurier
 
             order.CurierId = request.CurierId; // can implement RabbitMQ MassTransit to ask Authentication service, Curier with the id is available
             order.Status = (int)OrderStatus.DELIVEREDCURIER;
+            order.RejectedOrCompletedReason = null;
 
             await _orderRepository.UpdateAsync(order);
 
