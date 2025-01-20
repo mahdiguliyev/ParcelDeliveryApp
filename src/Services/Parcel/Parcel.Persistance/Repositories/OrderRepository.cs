@@ -12,7 +12,7 @@ namespace Parcel.Persistance.Repositories
         public async Task<IEnumerable<Order>> GetOrdersByUserNameAsync(Guid userId)
         {
             var orderList = await _context.Orders
-                .Where(o => o.UserId == userId && !o.IsDeleted)
+                .Where(o => o.UserId == userId && !o.IsDeleted && o.IsActive)
                 .ToListAsync();
             return orderList;
         }

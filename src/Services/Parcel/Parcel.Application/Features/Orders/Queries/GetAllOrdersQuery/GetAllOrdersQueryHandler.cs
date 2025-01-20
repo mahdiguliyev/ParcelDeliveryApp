@@ -20,7 +20,7 @@ namespace Parcel.Application.Features.Orders.Queries.GetAllOrdersQuery
 
         public async Task<Result<List<OrdersDto>, DomainError>> Handle(GetAllOrdersQuery request, CancellationToken cancellationToken)
         {
-            var orderList = await _orderRepository.GetAsync(o => o.IsActive && !o.IsDeleted);
+            var orderList = await _orderRepository.GetAllAsync();
 
             if (orderList == null)
                 return Result.Failure<List<OrdersDto>, DomainError>(DomainError.BusinessError("There is not any orders."));
