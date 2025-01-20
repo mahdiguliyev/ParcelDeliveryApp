@@ -92,6 +92,25 @@
       "SwaggerKey": "Parcel"
     },
     {
+      "UpstreamPathTemplate": "/gw/parcel/getallorders",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/parcel/getallorders",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 1111
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "Admin"
+      },
+      "SwaggerKey": "Parcel"
+    },
+    {
       "UpstreamPathTemplate": "/gw/parcel/getorderdetail",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamPathTemplate": "/api/parcel/getorderdetail",

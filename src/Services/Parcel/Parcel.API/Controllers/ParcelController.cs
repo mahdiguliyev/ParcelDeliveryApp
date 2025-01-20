@@ -5,6 +5,7 @@ using Parcel.Application.Features.Orders.Commands.CancelOrder;
 using Parcel.Application.Features.Orders.Commands.ChangeDestOrder;
 using Parcel.Application.Features.Orders.Commands.ChangeStatusOrder;
 using Parcel.Application.Features.Orders.Commands.CreateOrder;
+using Parcel.Application.Features.Orders.Queries.GetAllOrdersQuery;
 using Parcel.Application.Features.Orders.Queries.GetOrderDetailQuery;
 using Parcel.Application.Features.Orders.Queries.GetOrdersListQuery;
 using PD.Shared.Models;
@@ -47,6 +48,20 @@ namespace Parcel.API.Controllers
         public async Task<IActionResult> GetOrders()
         {
             GetOrdersListQuery command = new GetOrdersListQuery();
+            var result = await _mediator.Send(command);
+
+            return result.IsSuccess ?
+                Ok(ApiResponse<List<OrdersDto>>.Success(result.Value)) :
+                BadRequest(ApiResponse<List<OrdersDto>>.Failure(result.Error.ErrorMessage));
+        }
+
+        [HttpGet("getallorders")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetAllOrders()
+        {
+            GetAllOrdersQuery command = new GetAllOrdersQuery();
             var result = await _mediator.Send(command);
 
             return result.IsSuccess ?
