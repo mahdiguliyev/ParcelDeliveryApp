@@ -40,26 +40,29 @@ namespace Authentication.Services.Concretes
 
             var roles = await _userManager.GetRolesAsync(user);
 
-            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtExtensions.SecurityKey));
-            var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-            var expirationTimeStamp = DateTime.Now.AddMinutes(10);
-
-            var claims = new List<Claim>
+            var tokenExpiryTimeStamp = DateTime.Now.AddMinutes(JwtExtensions.JWT_TOKEN_EXPIRY_TIME);
+            var tokenKey = Encoding.UTF8.GetBytes(JwtExtensions.JWT_SECURITY_KEY);
+            var claimsIdentity = new ClaimsIdentity(new List<Claim>
             {
-                new Claim("name", user.UserName),
-                new Claim("role", string.Join(",", roles)),
+                new Claim(JwtRegisteredClaimNames.Name, user.UserName),
+                new Claim(ClaimTypes.Role, roles[0]),
                 new Claim("ss-parcel-ui", user.Id.ToString()),
+            });
+
+            var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature);
+
+            var tokenOptions = new SecurityTokenDescriptor
+            {
+                Subject = claimsIdentity,
+                Expires = tokenExpiryTimeStamp,
+                SigningCredentials = signingCredentials
             };
 
-            var tokenOptions = new JwtSecurityToken(
-                claims: claims,
-                expires: expirationTimeStamp,
-                signingCredentials: signingCredentials
-                );
+            var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
+            var securityToken = jwtSecurityTokenHandler.CreateToken(tokenOptions);
+            var token = jwtSecurityTokenHandler.WriteToken(securityToken);
 
-            var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
-
-            return Result.Success<AuthToken, DomainError>(new AuthToken(tokenString, (int)expirationTimeStamp.Subtract(DateTime.Now).TotalSeconds));
+            return Result.Success<AuthToken, DomainError>(new AuthToken(token, (int)tokenExpiryTimeStamp.Subtract(DateTime.Now).TotalSeconds));
         }
 
         public async Task<IResult<RegisterUserModel, DomainError>> RegisterUserAndGenerateAuthTokenAsync(RegisterUserDto model)

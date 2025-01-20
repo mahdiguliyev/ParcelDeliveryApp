@@ -47,7 +47,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "Role": "Admin"
+        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "Admin"
       },
       "SwaggerKey": "Auth"
     },
@@ -68,34 +68,9 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "Role": "User"
+        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "User"
       },
       "SwaggerKey": "Parcel"
-    },
-
-    // StaffManagement APIs
-
-    {
-      "UpstreamPathTemplate": "/gw/staff/{id}",
-      "UpstreamHttpMethod": [ "GET" ],
-      "DownstreamPathTemplate": "/api/staff/{id}",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 2222
-        }
-      ],
-      "FileCacheOptions": {
-        "TtlSeconds": 30
-      },
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer"
-      },
-      "RouteClaimsRequirement": {
-        "Role": "Admin"
-      },
-      "SwaggerKey": "StaffManagement"
     }
   ],
   "SwaggerEndPoints": [

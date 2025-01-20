@@ -11,7 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AuthDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQL")));
 
 builder.Services.AddPersistenceServices();
-builder.Services.AddJwtAuthentication();
 
 
 // Register custom services
@@ -56,6 +55,8 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
+
+builder.Services.AddJwtAuthentication();
 
 var app = builder.Build();
 
