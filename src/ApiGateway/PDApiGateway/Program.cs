@@ -1,6 +1,5 @@
 using Authentication.Extensions;
 using Microsoft.OpenApi.Models;
-using Ocelot.Cache.CacheManager;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
@@ -31,10 +30,13 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-app.UseSwaggerForOcelotUI(options =>
+if (app.Environment.IsDevelopment())
 {
-    options.PathToSwaggerGenerator = "/swagger/docs";
-});
+    app.UseSwaggerForOcelotUI(options =>
+    {
+        options.PathToSwaggerGenerator = "/swagger/docs";
+    });
+}
 
 await app.UseOcelot();
 

@@ -50,5 +50,15 @@
     volumes:
       - ~/.aspnet/https:/root/.aspnet/https:ro
 
+  ocelotapigw:
+    image: ${DOCKER_REGISTRY-}ocelotapigw
+    build:
+      context: .
+      dockerfile: ApiGateway/PDApiGateway/Dockerfile
+    ports:
+      - "4444:4444"
+    environment:
+      - ASPNETCORE_URLS=http://+:4444
+
 volumes:
   postgres_data:
