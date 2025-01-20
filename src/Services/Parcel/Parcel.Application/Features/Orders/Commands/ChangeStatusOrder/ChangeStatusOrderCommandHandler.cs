@@ -1,10 +1,6 @@
-﻿using AutoMapper;
-using CSharpFunctionalExtensions;
+﻿using CSharpFunctionalExtensions;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Parcel.Application.Contracts.Persistance;
-using Parcel.Application.Helpers;
-using PD.Shared.Enums;
 using PD.Shared.Models;
 
 namespace Parcel.Application.Features.Orders.Commands.ChangeStatusOrder

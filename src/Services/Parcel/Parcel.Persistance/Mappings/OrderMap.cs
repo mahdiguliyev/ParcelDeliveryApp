@@ -48,6 +48,10 @@ namespace Parcel.Persistance.Mappings
             builder.Property(o => o.CurierId)
                 .IsRequired(false);
 
+            builder.Property(o => o.Title)
+                .IsRequired(false)
+                .HasMaxLength(250);
+
             builder.Property(o => o.Status)
                 .IsRequired();
 
