@@ -12,13 +12,11 @@ namespace Parcel.Application.Features.Orders.Commands.CancelOrder
     public class CancelOrderCommandHandler : IRequestHandler<CancelOrderCommand, Result<Guid, DomainError>>
     {
         private readonly IOrderRepository _orderRepository;
-        private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CancelOrderCommandHandler(IOrderRepository orderRepository, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+        public CancelOrderCommandHandler(IOrderRepository orderRepository, IHttpContextAccessor httpContextAccessor)
         {
             _orderRepository = orderRepository;
-            _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
         }
         public async Task<Result<Guid, DomainError>> Handle(CancelOrderCommand request, CancellationToken cancellationToken)

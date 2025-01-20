@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Parcel.Application.Features.Orders.Commands.CancelOrder;
 using Parcel.Application.Features.Orders.Commands.ChangeDestOrder;
+using Parcel.Application.Features.Orders.Commands.ChangeStatusOrder;
 using Parcel.Application.Features.Orders.Commands.CreateOrder;
 using Parcel.Application.Features.Orders.Queries.GetOrderDetailQuery;
 using Parcel.Application.Features.Orders.Queries.GetOrdersListQuery;
@@ -84,6 +85,19 @@ namespace Parcel.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Authorize(Roles = "User")]
         public async Task<IActionResult> CancelOrder(CancelOrderCommand command)
+        {
+            var result = await _mediator.Send(command);
+
+            return result.IsSuccess ?
+                Ok(ApiResponse<Guid>.Success(result.Value)) :
+                BadRequest(ApiResponse<Guid>.Failure(result.Error.ErrorMessage));
+        }
+
+        [HttpPut("changeorderstatus")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> ChangeOrderStatus(ChangeStatusOrderCommand command)
         {
             var result = await _mediator.Send(command);
 

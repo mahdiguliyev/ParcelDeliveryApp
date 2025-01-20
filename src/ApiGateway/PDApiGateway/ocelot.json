@@ -147,6 +147,25 @@
         "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "User"
       },
       "SwaggerKey": "Parcel"
+    },
+    {
+      "UpstreamPathTemplate": "/gw/parcel/changeorderstatus",
+      "UpstreamHttpMethod": [ "PUT" ],
+      "DownstreamPathTemplate": "/api/parcel/changeorderstatus",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 1111
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "Admin"
+      },
+      "SwaggerKey": "Parcel"
     }
   ],
   "SwaggerEndPoints": [
