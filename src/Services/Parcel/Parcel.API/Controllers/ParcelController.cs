@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Parcel.Application.Features.Orders.Commands.CreateOrder;
+using Parcel.Application.Features.Orders.Queries.GetOrdersListQuery;
 using PD.Shared.Models;
 
 namespace Parcel.API.Controllers
@@ -19,6 +20,7 @@ namespace Parcel.API.Controllers
 
         [HttpPost("createorder")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Authorize(Roles = "User")]
         public async Task<IActionResult> CreateOrder(CreateOrderCommand command)
         {
@@ -32,6 +34,20 @@ namespace Parcel.API.Controllers
             return result.IsSuccess ?
                 Ok(ApiResponse<CreateOrderCommand>.Success(result.Value)) :
                 BadRequest(ApiResponse<CreateOrderCommand>.Failure(result.Error.ErrorMessage));
+        }
+
+        [HttpGet("getorders")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "User")]
+        public async Task<IActionResult> GetOrders()
+        {
+            GetOrdersListQuery command = new GetOrdersListQuery();
+            var result = await _mediator.Send(command);
+
+            return result.IsSuccess ?
+                Ok(ApiResponse<List<OrdersDto>>.Success(result.Value)) :
+                BadRequest(ApiResponse<List<OrdersDto>>.Failure(result.Error.ErrorMessage));
         }
     }
 }

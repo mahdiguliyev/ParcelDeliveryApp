@@ -29,7 +29,7 @@ namespace Parcel.Application.Features.Orders.Commands.CreateOrder
 
             if (userId is null)
             {
-                return Result.Failure<CreateOrderCommand, DomainError>(DomainError.BusinessError("Token is not valid."));
+                return Result.Failure<CreateOrderCommand, DomainError>(DomainError.BusinessError("User information is not correct."));
             }
 
             var orderEntity = _mapper.Map<Order>(request);
