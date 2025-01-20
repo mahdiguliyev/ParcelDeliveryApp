@@ -34,7 +34,7 @@ namespace Parcel.Application.Features.Orders.Queries.GetOrdersListQuery
             var orderList = await _orderRepository.GetOrdersByUserNameAsync(userId.Value);
 
             if (orderList == null)
-                return null;
+                return Result.Failure<List<OrdersDto>, DomainError>(DomainError.BusinessError("There is not any orders."));
 
             var orderDto = _mapper.Map<List<OrdersDto>>(orderList);
             return Result.Success<List<OrdersDto>, DomainError>(orderDto);

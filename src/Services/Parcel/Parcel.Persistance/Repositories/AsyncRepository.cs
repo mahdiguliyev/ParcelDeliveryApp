@@ -33,6 +33,14 @@ namespace Parcel.Persistance.Repositories
             return await _context.Set<T>().ToListAsync();
         }
 
+        public async Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate, bool disableTracking = true)
+        {
+            IQueryable<T> query = _context.Set<T>();
+            if (disableTracking) query = query.AsNoTracking();
+
+            return await query.FirstOrDefaultAsync(predicate);
+        }
+
         public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate)
         {
             return await _context.Set<T>().Where(predicate).ToListAsync();
