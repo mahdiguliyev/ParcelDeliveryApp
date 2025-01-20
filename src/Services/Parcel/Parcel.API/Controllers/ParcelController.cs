@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Parcel.Application.Features.Orders.Commands.ChangeDestOrder;
 using Parcel.Application.Features.Orders.Commands.CreateOrder;
 using Parcel.Application.Features.Orders.Queries.GetOrderDetailQuery;
 using Parcel.Application.Features.Orders.Queries.GetOrdersListQuery;
@@ -56,6 +57,19 @@ namespace Parcel.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Authorize(Roles = "User")]
         public async Task<IActionResult> GetOrderDetail(GetOrderDetailQuery command)
+        {
+            var result = await _mediator.Send(command);
+
+            return result.IsSuccess ?
+                Ok(ApiResponse<OrderDetailDto>.Success(result.Value)) :
+                BadRequest(ApiResponse<OrderDetailDto>.Failure(result.Error.ErrorMessage));
+        }
+
+        [HttpPut("updateorderdest")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "User")]
+        public async Task<IActionResult> UpdateOrderDest(ChangeDestOrderCommand command)
         {
             var result = await _mediator.Send(command);
 

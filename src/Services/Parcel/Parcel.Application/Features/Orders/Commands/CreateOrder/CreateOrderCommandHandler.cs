@@ -43,9 +43,6 @@ namespace Parcel.Application.Features.Orders.Commands.CreateOrder
                 return Result.Failure<CreateOrderCommand, DomainError>(DomainError.BusinessError("Order cannot created."));
             }
 
-            //_logger.LogInformation($"Order {newOrder.Id} is created successfully.");
-            //await SendMail(newOrder);
-
             return Result.Success<CreateOrderCommand, DomainError>(request);
         }
     }
