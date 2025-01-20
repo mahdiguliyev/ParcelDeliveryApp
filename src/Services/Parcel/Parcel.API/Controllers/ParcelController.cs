@@ -10,6 +10,7 @@ using Parcel.Application.Features.Orders.Commands.UpdateCurrentCoordinatesOrder;
 using Parcel.Application.Features.Orders.Queries.GetAllOrdersQuery;
 using Parcel.Application.Features.Orders.Queries.GetOrderDetailQuery;
 using Parcel.Application.Features.Orders.Queries.GetOrdersListQuery;
+using Parcel.Application.Features.Orders.Queries.TrakOrderQuery;
 using PD.Shared.Models;
 
 namespace Parcel.API.Controllers
@@ -82,6 +83,19 @@ namespace Parcel.API.Controllers
             return result.IsSuccess ?
                 Ok(ApiResponse<OrderDetailDto>.Success(result.Value)) :
                 BadRequest(ApiResponse<OrderDetailDto>.Failure(result.Error.ErrorMessage));
+        }
+
+        [HttpGet("trackorder")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> TrackOrder(TrakOrderQuery command)
+        {
+            var result = await _mediator.Send(command);
+
+            return result.IsSuccess ?
+                Ok(ApiResponse<TrackOrderDto>.Success(result.Value)) :
+                BadRequest(ApiResponse<TrackOrderDto>.Failure(result.Error.ErrorMessage));
         }
 
         [HttpPut("updateorderdest")]

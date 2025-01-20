@@ -4,6 +4,7 @@ using Parcel.Application.Features.Orders.Commands.CreateOrder;
 using Parcel.Application.Features.Orders.Commands.UpdateCurrentCoordinatesOrder;
 using Parcel.Application.Features.Orders.Queries.GetOrderDetailQuery;
 using Parcel.Application.Features.Orders.Queries.GetOrdersListQuery;
+using Parcel.Application.Features.Orders.Queries.TrakOrderQuery;
 using Parcel.Domain.Entities;
 
 namespace Parcel.Application.Mappings
@@ -17,6 +18,7 @@ namespace Parcel.Application.Mappings
             CreateMap<Order, OrderDetailDto>().ReverseMap();
             CreateMap<Order, AssignOrderToCurierDto>().ReverseMap();
             CreateMap<Order, UpdateCurrentCoordinatesOrderDto>().ReverseMap();
+            CreateMap<Order, TrackOrderDto>().ReverseMap();
         }
     }
 }

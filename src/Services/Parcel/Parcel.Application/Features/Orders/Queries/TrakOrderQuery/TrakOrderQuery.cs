@@ -4,9 +4,9 @@ using PD.Shared.Models;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Parcel.Application.Features.Orders.Queries.GetOrderDetailQuery
+namespace Parcel.Application.Features.Orders.Queries.TrakOrderQuery
 {
-    public class GetOrderDetailQuery : IRequest<Result<OrderDetailDto, DomainError>>
+    public class TrakOrderQuery : IRequest<Result<TrackOrderDto, DomainError>>
     {
         [Required(ErrorMessage = "Order id is required.")]
         [DefaultValue("")]
