@@ -47,7 +47,7 @@ namespace Parcel.API.Controllers
         [HttpGet("getorders")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "User,Curier")]
         public async Task<IActionResult> GetOrders()
         {
             GetOrdersListQuery command = new GetOrdersListQuery();
