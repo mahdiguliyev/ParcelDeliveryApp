@@ -39,6 +39,9 @@ namespace Authentication.Services.Concretes
                 return Result.Failure<AuthToken, DomainError>(DomainError.BusinessError("User not found."));
 
             var roles = await _userManager.GetRolesAsync(user);
+            
+            if(roles.Count == 0)
+                return Result.Failure<AuthToken, DomainError>(DomainError.BusinessError("Role is not assigned to user."));
 
             var tokenExpiryTimeStamp = DateTime.Now.AddMinutes(JwtExtensions.JWT_TOKEN_EXPIRY_TIME);
             var tokenKey = Encoding.UTF8.GetBytes(JwtExtensions.JWT_SECURITY_KEY);
