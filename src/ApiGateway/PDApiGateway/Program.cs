@@ -24,19 +24,16 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-//builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddEndpointsApiExplorer();
 
 //builder.Services.AddControllers();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+app.UseSwaggerForOcelotUI(options =>
 {
-    app.UseSwaggerForOcelotUI(options =>
-    {
-        options.PathToSwaggerGenerator = "/swagger/docs";
-    });
-}
+    options.PathToSwaggerGenerator = "/swagger/docs";
+});
 
 await app.UseOcelot();
 
