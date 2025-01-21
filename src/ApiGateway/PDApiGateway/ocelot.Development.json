@@ -13,7 +13,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "authentication",
           "Port": 3333
         }
       ],
@@ -26,7 +26,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "authentication",
           "Port": 3333
         }
       ],
@@ -39,7 +39,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "authentication",
           "Port": 3333
         }
       ],
@@ -60,7 +60,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "parcel",
           "Port": 1111
         }
       ],
@@ -79,7 +79,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "parcel",
           "Port": 1111
         }
       ],
@@ -98,7 +98,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "parcel",
           "Port": 1111
         }
       ],
@@ -117,7 +117,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "parcel",
           "Port": 1111
         }
       ],
@@ -136,7 +136,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "parcel",
           "Port": 1111
         }
       ],
@@ -155,7 +155,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "parcel",
           "Port": 1111
         }
       ],
@@ -174,7 +174,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "parcel",
           "Port": 1111
         }
       ],
@@ -193,7 +193,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "parcel",
           "Port": 1111
         }
       ],
@@ -212,7 +212,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "parcel",
           "Port": 1111
         }
       ],
@@ -231,7 +231,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "parcel",
           "Port": 1111
         }
       ],
@@ -250,7 +250,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "parcel",
           "Port": 1111
         }
       ],
@@ -270,7 +270,7 @@
         {
           "Name": "API Auth",
           "Version": "v1",
-          "Url": "http://localhost:3333/swagger/v1/swagger.json"
+          "Url": "http://authentication:3333/swagger/v1/swagger.json"
         }
       ]
     },
@@ -280,7 +280,7 @@
         {
           "Name": "API Parcel",
           "Version": "v1",
-          "Url": "http://localhost:1111/swagger/v1/swagger.json"
+          "Url": "http://parcel:1111/swagger/v1/swagger.json"
         }
       ]
     }
