@@ -11,17 +11,32 @@
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  # FOR WINDOW
+  # parcel-db:
+  #   image: mcr.microsoft.com/mssql/server:2022-latest
+  #   container_name: parcel-db
+  #   ports:
+  #     - "1433:1433"
+  #   environment:
+  #     ACCEPT_EULA: "Y"
+  #     SA_PASSWORD: "ParcelApi2025@"
+  
+  # FOR MAC
   parcel-db:
-    image: mcr.microsoft.com/mssql/server:2022-latest
+    image: mcr.microsoft.com/azure-sql-edge:latest
     container_name: parcel-db
+    environment:
+      - "ACCEPT_EULA=1"
+      - "MSSQL_SA_PASSWORD=ParcelApi2025@"
     ports:
       - "1433:1433"
-    environment:
-      ACCEPT_EULA: "Y"
-      SA_PASSWORD: "ParcelApi2025@"
+    hostname: mssql
+    volumes:
+      - "mssql-azuresql-edge-data:/var/opt/mssql"
   
   authentication:
     image: authentication.api
+    container_name: authentication
     build:
       context: .
       dockerfile: Services/Auth/Authentication/Dockerfile
@@ -37,6 +52,7 @@
 
   parcel:
     image: parcel.api
+    container_name: parcel
     build:
       context: .
       dockerfile: Services/Parcel/Parcel.API/Dockerfile
@@ -52,13 +68,16 @@
 
   ocelotapigw:
     image: ${DOCKER_REGISTRY-}ocelotapigw
+    container_name: ocelotapigw
     build:
       context: .
       dockerfile: ApiGateway/PDApiGateway/Dockerfile
     ports:
       - "4444:4444"
     environment:
+      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:4444
 
 volumes:
   postgres_data:
+  mssql-azuresql-edge-data:
